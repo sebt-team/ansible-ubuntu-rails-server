@@ -6,7 +6,7 @@ ssh_key_path: ~/.ssh/id_rsa.pub
 
 # Crypted password for 'deploy' Unix user.
 # To generate, use generate-crypted-password.py
-password: $6$rounds=100000$IjJ.NeuYgJ/c.D7c$ZV8ANRn81G85GNlAs5/1iTgneQKYuGPqG0UlTx4VR9E/mPRjdBYG74JijrDuC3Qi8H5AyGJ9bdG4e/fffFyLR0
+password: 100000$3vu/qfLZja5wF4C/$q6sJk5U3UV9Kyi3P0p5a9Ag07LzRYq4cfHWxNv1ty1NbsvYB8BOYrMRxILDd/JCF3NDkBHLbny3TeKtTR88tr/
 
 # Ruby version to install
 ruby_version: 2.1.5

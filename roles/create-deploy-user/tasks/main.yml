@@ -20,5 +20,5 @@
   # note: 2755 => 2=setgid, 7=owner rwx, 5=group rx, 5=other rx
   file: name=~{{ deploy }}/apps state=directory owner={{ deploy }} group=www-data mode=2755
 
-- name: remove authorized_keys for root (specifically for DigitalOcean)
-  file: name=/root/.ssh/authorized_keys state=absent
+# - name: remove authorized_keys for root (specifically for DigitalOcean)
+#   file: name=/root/.ssh/authorized_keys state=absent

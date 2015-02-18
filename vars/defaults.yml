@@ -1,12 +1,13 @@
 ---
-  # Unix user name to deploy as
-deploy: geoffrey
+# Unix user name to deploy as
+deploy: deploy
 
-ssh_key_path: ~/.ssh/id_rsa.pub
+# Ssh key path
+ssh_key_path: ~/.ssh/new_shiny_osx.pub
 
 # Crypted password for 'deploy' Unix user.
 # To generate, use generate-crypted-password.py
-password: 100000$3vu/qfLZja5wF4C/$q6sJk5U3UV9Kyi3P0p5a9Ag07LzRYq4cfHWxNv1ty1NbsvYB8BOYrMRxILDd/JCF3NDkBHLbny3TeKtTR88tr/
+password: $6$rounds=100000$eDJi6oOzCU3lwJjK$8IfsWwPQF/Ly/Nq9WrVcPP8y6hEf1QSneNKcgMHYWCO6LdjJZOxBuZgFa0SYthlyXrt10rPJC3gOzXixjcwva.
 
 # Ruby version to install
 ruby_version: 2.1.5

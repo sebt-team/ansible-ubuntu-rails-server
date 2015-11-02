@@ -76,3 +76,9 @@
   sudo: yes
   with_items:
    - nodejs
+
+- name: Install npm packages
+  npm: name={{item}} global=yes
+  sudo: yes
+  with_items:
+    - bower

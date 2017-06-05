@@ -7,9 +7,13 @@
 
 # Can't seem to use keyserver= apt_key feature here
 # See https://groups.google.com/forum/#!topic/ansible-project/8SEZWEQGTsg
-- name: Add Phusion Passenger repo key
-  apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x561F9B9CAC40B2F7 state=present
+# Passenger repository setup.
+- name: Add Passenger apt key
   sudo: yes
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 561F9B9CAC40B2F7
+    state: present
 
 - name: Install packages to enable apt over HTTPS
   action: apt pkg={{item}} state=installed update_cache=true
@@ -18,9 +22,13 @@
     - apt-transport-https
     - ca-certificates
 
-- name: Add Phusion Passenger repo
-  apt_repository: repo='deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main'
+- name: Add Phusion apt repo.
   sudo: yes
+  apt_repository:
+    repo: 'deb https://oss-binaries.phusionpassenger.com/apt/passenger {{ansible_distribution_release}} main'
+    state: present
+    update_cache: yes
+
 
 - name: Install nginx-extras and passenger
   action: apt pkg={{item}} state=installed update_cache=true

@@ -3,7 +3,7 @@
 server_name: staging.sampleapp
 
 # Used as nginx site name, rails directory, among other things
-full_app_name: sampleapp
+full_app_name: sampleapp_production
 
 # Postgresql database settings
 

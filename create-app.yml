@@ -1,5 +1,6 @@
 - hosts: all
   vars_files:
+    - vars/defaults.yml
     - vars/sampleapp.yml
   remote_user: "{{ deploy }}"
   roles:

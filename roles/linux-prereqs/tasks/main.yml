@@ -2,8 +2,8 @@
   file: name=/opt/vagrant_ruby state=absent
   sudo: yes
 
-- name: Update apt cache
-  apt: update_cache=yes cache_valid_time=3600
+- apt: name=aptitude state=present
+- apt: update_cache=yes upgrade=safe cache_valid_time=3600
   sudo: yes
 
 - name: Upgrade existing linux packages
@@ -63,19 +63,34 @@
   copy: src=50unattended-upgrades dest=/etc/apt/apt.conf.d/50unattended-upgrades
   sudo: yes
 
-
-# Rails depends on a JS runtime.
-# Should move this to it's own role, eventually.
+# # Rails depends on a JS runtime.
+# # Should move this to it's own role, eventually.
 
 - name: Node.js | Add the node.js PPA
-  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/chris-lea-node_js-trusty.list
-  sudo: yes
+  get_url:
+    url: "https://deb.nodesource.com/setup_8.x"
+    dest: "/tmp/nodejs.sh"
 
-- name: Node.js | Install nodejs and npm
-  action: apt pkg={{ item }} state=installed update_cache=yes
+- name: Node.js | Set execution right to script
+  file:
+    path: "/tmp/nodejs.sh"
+    mode: "u+x"
+
+- name: Node.js | Execute installation script
   sudo: yes
+  shell: "/tmp/nodejs.sh"
+
+- name: Node.js | Remove installation script
+  file:
+    path: "/tmp/nodejs.sh"
+    state: absent
+
+- name: Node.js | Install Node.js
+  sudo: yes
+  apt: name={{ item }} state=present update_cache=yes
   with_items:
-   - nodejs
+    - build-essential
+    - nodejs
 
 - name: Install npm packages
   npm: name={{item}} global=yes
